@@ -72,36 +72,57 @@ let self = module.exports = {
       // .then(() => console.log('Name ' + society.StockName + ' created !'))
       .catch(e => console.log(e));
   },
+  insertRcs: (issuerId, rcs) => {
+    return knex("issuer").insert({
+      rcs: rcs,
+    })
+      .where('id', issuerId)
+      .then(() => console.log('Rcs inserted !', rcs));
+  },
+  insertCorporateform: (issuerId, value) => {
+    return knex("issuer").insert({
+      corporateForm: value,
+    })
+      .where('id', issuerId)
+      .then(() => console.log('corporateForm inserted !', value));
+  },
+  insertBoard: (issuerId, value) => {
+    return knex("issuer").insert({
+      board: value,
+    })
+      .where('id', issuerId)
+      .then(() => console.log('board inserted !', value));
+  },
   insertMarketCap: (value, issuerId, date) => {
     return knex("marketCap").insert({
-        issuer_id: issuerId,
-        marketCapInMillionEuros: value,
-        date: date,
-      })
+      issuer_id: issuerId,
+      marketCapInMillionEuros: value,
+      date: date,
+    })
       .then(() => console.log('Market cap inserted !'));
   },
   insertCompartment: (value, issuerId, date) => {
     return knex("compartment").insert({
-        issuer_id: issuerId,
-        compartment: value.trim(),
-        date: date,
-      })
+      issuer_id: issuerId,
+      compartment: value.trim(),
+      date: date,
+    })
       .then(() => console.log('Market cap inserted !'));
   },
   insertMarket: (value, issuerId, date) => {
     return knex("market").insert({
-        issuer_id: issuerId,
-        market: value.trim(),
-        date: date,
-      })
+      issuer_id: issuerId,
+      market: value.trim(),
+      date: date,
+    })
       .then(() => console.log('Market inserted !'));
   },
   insertName: (name, issuerId, date) => {
     return knex("names").insert({
-        issuer_id: issuerId,
-        date: date,
-        name: name.trim()
-      })
+      issuer_id: issuerId,
+      date: date,
+      name: name.trim()
+    })
       .then(() => console.log('Name ' + name + ' inserted !'))
   },
   existIsin: (isin) => {
